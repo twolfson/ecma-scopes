@@ -1,0 +1,11 @@
+// Good starting point
+// https://github.com/Constellation/esutils/blob/1.1.4/lib/ast.js#L64-L88
+// Docs https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API
+{
+  "lexical": [
+    // TODO: Should `Program` be lexical scopiing?
+  ],
+  "block": [
+
+  ]
+}
