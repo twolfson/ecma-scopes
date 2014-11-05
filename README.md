@@ -89,7 +89,7 @@ if (true) {
 In its simplest form, the following is valid and block scoped:
 
 ```js
-{ var item; }
+{ let item; }
 ```
 
 In addition to braces, loops that allow variable declarations scope `let` to their corresponding `BlockStatement` (section between braces):
@@ -100,6 +100,17 @@ for (let item = 'hello', i = 0; i < 10; i++) {
 }
 // item is not declared nor defined
 ```
+
+Statement reference: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Statements
+
+With our research, we found the following tokens to manage block scope:
+
+- `BlockStatement`, section of braces
+  - Example: `{ let item; }`
+    - `item` is scoped to the braces and not exposed outside of them
+- `ForStatement`, `for` loop
+  - Example: `for (let item; false; false) { /* Code goes here */ }`
+    - `item` is accessible within the loop and between the parentheses but not outside of the loop
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
