@@ -117,6 +117,9 @@ With our research, we found the following tokens to manage block scope:
 - `ForOfStatement`, `for of` loop (iterates over each of the values of an array)
     - Example: `var arr = ['hello', 'world']; for (let val of arr) { /* Code goes here */ }`
         - `val` is accessible within the loop and between the parentheses but not outside of the loop
+- `ComprehensionBlock`, array comprehension (generate an array from another array)
+    - Example: `var arr1 = [1], arr2 = [val + 1 for (val of arr1)];`
+        - `val` is accessible within the comprehension (between the brackets `[ ... ]`) but not outside of it
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
