@@ -1,6 +1,7 @@
 // Load in dependencies
 var assert = require('assert');
 var fs = require('fs');
+var esprima = require('esprima-fb');
 var glob = require('glob');
 var ecmaScopes = require('../');
 var scriptUtils = require('./utils/script');
@@ -21,7 +22,7 @@ files.forEach(function handleBadSyntaxFile (_filepath) {
       var script = fs.readFileSync(filepath, 'utf8');
       var err;
       try {
-        esprima.parse(this.script);
+        esprima.parse(script);
       // Upon error, save it
       } catch (_err) {
         err = _err;
