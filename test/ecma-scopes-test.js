@@ -89,7 +89,8 @@ describe('ecma-scopes\' lexical scopes:', function () {
 
         // Verify each of the nodes is not in there
         this.parents.forEach(function assertNotOtherLexical (parent) {
-          expect(parent.type).not['in'](otherLexicalScopes);
+          expect(parent.type).to.not.equal(undefined);
+          expect(otherLexicalScopes).to.not.contain(parent.type);
         });
       });
     });
