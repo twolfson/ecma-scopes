@@ -106,11 +106,17 @@ Statement reference: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/S
 With our research, we found the following tokens to manage block scope:
 
 - `BlockStatement`, section of braces
-  - Example: `{ let item; }`
-    - `item` is scoped to the braces and not exposed outside of them
+    - Example: `{ let item; }`
+        - `item` is scoped to the braces and not exposed outside of them
 - `ForStatement`, `for` loop
-  - Example: `for (let item; false; false) { /* Code goes here */ }`
-    - `item` is accessible within the loop and between the parentheses but not outside of the loop
+    - Example: `for (let item; false; false) { /* Code goes here */ }`
+        - `item` is accessible within the loop and between the parentheses but not outside of the loop
+- `ForInStatement`, `for in` loop (iterates over each of the keys of an object)
+    - Example: `var obj = {hello: 'world'}; for (let key in obj) { /* Code goes here */ }`
+        - `key` is accessible within the loop and between the parentheses but not outside of the loop
+- `ForOfStatement`, `for of` loop (iterates over each of the values of an array)
+    - Example: `var arr = ['hello', 'world']; for (let val of arr) { /* Code goes here */ }`
+        - `val` is accessible within the loop and between the parentheses but not outside of the loop
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
