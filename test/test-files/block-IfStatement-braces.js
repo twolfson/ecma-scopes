@@ -1,4 +1,5 @@
 'use strict';
+
 if (true) {
   let block = 'hello';
 }
