@@ -7,19 +7,24 @@ var ecmaScopes = require('../');
 
 // TODO: Rename this file to lexical tests
 
+// Define unrunnable scopes (e.g. arrows)
+var unrunnableScopes = ['ArrowExpression'];
+
 // Define test utilities
 var testUtils = {
-  loadScript: function (filepath) {
+  loadScript: function (filepath, type) {
     before(function loadScriptFn () {
       // Load our script and parse its AST
       this.script = fs.readFileSync(filepath, 'utf8');
       this.walker = astw(this.script);
     });
-    before(function openVmFn () {
-      // Load our file into the VM
-      this.vm = {};
-      vm.runInNewContext(this.script, this.vm);
-    });
+    if (unrunnableScopes.indexOf(type) === -1) {
+      before(function openVmFn () {
+        // Load our file into the VM
+        this.vm = {};
+        vm.runInNewContext(this.script, this.vm);
+      });
+    }
     after(function cleanup () {
       // Clean up the script and vm
       delete this.script;
@@ -38,7 +43,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
       // Resolve and load our scope file
       // e.g. `test-files/lexical-FunctionDeclaration.js`
       var filepath = __dirname + '/test-files/lexical-' + type + '.js';
-      testUtils.loadScript(filepath);
+      testUtils.loadScript(filepath, type);
 
       // Collect the parents for analysis within the lexical scope
       before(function collectParents () {
@@ -70,9 +75,11 @@ describe('ecma-scopes\' lexical scopes:', function () {
         });
       });
 
-      it('is a lexical scope', function () {
-        expect(this.vm).to.not.have.ownProperty('lexical');
-      });
+      if (unrunnableScopes.indexOf(type) === -1) {
+        it('is a lexical scope', function () {
+          expect(this.vm).to.not.have.ownProperty('lexical');
+        });
+      }
 
       it('contains `lexical` inside of a "' + type + '"', function () {
         var container = this.parents[this.parents.length - 1];
