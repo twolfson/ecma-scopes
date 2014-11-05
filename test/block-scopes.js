@@ -86,8 +86,4 @@ describe('ecma-scopes\' block scopes:', function () {
       expect(node).to.equal(null);
     });
   });
-
-  // DEV: For sanity we will parse the scripts with bad syntax
-  // DEV: This will help us detect if `esprima` starts supporting something unexpected
-
 });
