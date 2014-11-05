@@ -7,7 +7,7 @@ exports.findFirst = function (ast, requisites) {
   // Walk the AST looking for a matching node
   var retVal = null;
   var comparator = _.matches(requisites);
-  astw(ast).walk(function compareNode (node) {
+  astw(ast)(function compareNode (node) {
     // If we have found our retVal, do nothing
     if (retVal) {
       return;

@@ -1,6 +1,7 @@
 // Load in dependencies
 var expect = require('chai').expect;
 var ecmaScopes = require('../');
+var astUtils = require('./utils/ast');
 var scriptUtils = require('./utils/script');
 
 // Define our tests
@@ -15,33 +16,30 @@ describe('ecma-scopes\' lexical scopes:', function () {
 
       // Collect the parents for analysis within the lexical scope
       before(function collectParents () {
-        // TODO: Is there a cleaner way to do this?
         // Find closest identifier to `root`
-        var parents = this.parents = [];
-        this.walker(function evaluateNode (node) {
-          // If we have already hit our lexical container, stop
-          if (parents.length !== 0) {
-            return;
-          }
-
-          // If the node is an Identifier and `lexical`
-          if (node.type === 'Identifier' && node.name === 'lexical') {
-            // Walk its parents until we resolve a function
-            node = node.parent;
-            while (node) {
-              // Save the parent node
-              parents.push(node);
-
-              // If the node is our type, stop
-              if (node.type === type) {
-                return;
-              }
-
-              // Resolve the next parent node
-              node = node.parent;
-            }
-          }
+        var node = this.node = astUtils.findFirst(this.ast, {
+          type: 'Identifier',
+          name: 'lexical'
         });
+
+        // If there was a match
+        var parents = this.parents = [];
+        if (node) {
+          // Walk its parents until we resolve a function
+          var parent = node.parent;
+          while (parent) {
+            // Save the parent node
+            parents.push(parent);
+
+            // If the parent is our scope type, stop
+            if (parent.type === type) {
+              return;
+            }
+
+            // Resolve the next parent
+            parent = parent.parent;
+          }
+        }
       });
 
       if (scriptUtils.unrunnableScopes.indexOf(type) === -1) {
