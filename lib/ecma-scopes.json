@@ -1,7 +1,7 @@
 // Good starting point
 // https://github.com/Constellation/esutils/blob/1.1.4/lib/ast.js#L64-L88
 // Docs https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API
-{
+module.exports = {
   // https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Functions
   "lexical": [
     // TODO: Should `Program` be lexical scopiing?
@@ -42,4 +42,4 @@
     // TODO: I am not sure entirely what this is...
     "ComprehensionBlock"
   ]
-}
+};

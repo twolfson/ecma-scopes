@@ -4,6 +4,8 @@ var vm = require('vm');
 var astw = require('astw');
 var expect = require('chai').expect;
 
+// TODO: Rename this file to lexical tests
+
 // Define test utilities
 var testUtils = {
   loadScript: function (filepath) {
@@ -49,6 +51,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
             parents.push(node);
 
             // If the node is a `Function`, stop
+            // TODO: Handle `
             if (node.type === 'FunctionDeclaration') {
               return;
             }
@@ -65,11 +68,13 @@ describe('ecma-scopes\' lexical scopes:', function () {
     });
 
     it('contains `lexical` inside of a "Function"', function () {
+      var container = this.parents[this.parents.length - 1];
+      expect(container.type).to.equal('FunctionDeclaration');
     });
 
     // TODO: For `block` scoping, we need a clarifier for lexical and other block scopes
     it.skip('does not contain `lexical` inside of other lexical scopes', function () {
-
+      // TODO: We need our JSON to be done for this to work
     });
   });
 });
