@@ -1,8 +1,10 @@
 // Load in dependencies
 var fs = require('fs');
 var vm = require('vm');
+var _ = require('underscore');
 var astw = require('astw');
 var expect = require('chai').expect;
+var ecmaScopes = require('../');
 
 // TODO: Rename this file to lexical tests
 
@@ -32,49 +34,63 @@ var testUtils = {
 describe('ecma-scopes\' lexical scopes:', function () {
   // TODO: Load from JSON, convert to dash-case, and load file
   // TODO: Then iterate in a `forEach` loop
-  describe('a "' + 'Function' + '"', function () {
-    testUtils.loadScript(__dirname + '/test-files/lexical-function.js');
-    before(function collectParents () {
-      var parents = this.parents = [];
-      this.walker(function evaluateNode (node) {
-        // If we have already hit our node, stop
-        if (parents.length !== 0) {
-          return;
-        }
+  ecmaScopes.lexical.forEach(function testLexicalCase (type, typeIndex) {
+    describe('a "' + type + '"', function () {
+      // Resolve and load our scope file
+      // e.g. `test-files/lexical-FunctionDeclaration.js`
+      var filepath = __dirname + '/test-files/lexical-' + type + '.js';
+      testUtils.loadScript(filepath);
 
-        // If the node is an Identifier and `lexical`
-        if (node.type === 'Identifier' && node.name === 'lexical') {
-          // Walk its parents until we resolve a function
-          node = node.parent;
-          while (node) {
-            // Save the parent node
-            parents.push(node);
-
-            // If the node is a `Function`, stop
-            // TODO: Handle `
-            if (node.type === 'FunctionDeclaration') {
-              return;
-            }
-
-            // Resolve the next parent node
-            node = node.parent;
+      // Collect the parents for analysis within the lexical scope
+      before(function collectParents () {
+        var parents = this.parents = [];
+        this.walker(function evaluateNode (node) {
+          // If we have already hit our lexical container, stop
+          if (parents.length !== 0) {
+            return;
           }
-        }
+
+          // If the node is an Identifier and `lexical`
+          if (node.type === 'Identifier' && node.name === 'lexical') {
+            // Walk its parents until we resolve a function
+            node = node.parent;
+            while (node) {
+              // Save the parent node
+              parents.push(node);
+
+              // If the node is a `Function`, stop
+              // TODO: Handle `FunctionExpression
+              if (node.type === 'FunctionDeclaration') {
+                return;
+              }
+
+              // Resolve the next parent node
+              node = node.parent;
+            }
+          }
+        });
       });
-    });
 
-    it('is a lexical scope', function () {
-      expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
-    });
+      it('is a lexical scope', function () {
+        expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
+      });
 
-    it('contains `lexical` inside of a "Function"', function () {
-      var container = this.parents[this.parents.length - 1];
-      expect(container.type).to.equal('FunctionDeclaration');
-    });
+      it('contains `lexical` inside of a "Function"', function () {
+        var container = this.parents[this.parents.length - 1];
+        expect(container.type).to.equal(type);
+      });
 
-    // TODO: For `block` scoping, we need a clarifier for lexical and other block scopes
-    it.skip('does not contain `lexical` inside of other lexical scopes', function () {
-      // TODO: We need our JSON to be done for this to work
+      // TODO: For `block` scoping, we need a clarifier for lexical and other block scopes
+      it('does not contain `lexical` inside of other lexical scopes', function () {
+        // TODO: We need our JSON to be done for this to work
+        // Collect the other lexical scopes
+        var otherLexicalScopes = ecmaScopes.lexical.slice();
+        otherLexicalScopes.splice(typeIndex, 1);
+
+        // Verify each of the nodes is not in there
+        var parentTypes = _.pluck(this.parents, 'type');
+        console.log(parentTypes);
+      });
     });
   });
 });
