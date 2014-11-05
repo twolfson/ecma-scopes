@@ -1,10 +1,10 @@
 'use strict';
 
-var obj = ['hello', 'world']
-for (let block of obj) {
+var arr = ['hello', 'world'];
+for (let block of arr) {
   // Code goes here
 }
 
-for (var lexical of obj) {
+for (var lexical of arr) {
   // Code goes here
 }

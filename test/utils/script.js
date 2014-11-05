@@ -7,7 +7,7 @@ var esprima = require('esprima-fb');
 // Define unrunnable scopes (e.g. arrow functions)
 exports.unrunnableScopes = [
   'ArrowFunctionExpression',
-  'ForOfStatement'
+  // 'ForOfStatement'
 ];
 
 // Define script utilities
