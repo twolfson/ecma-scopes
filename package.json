@@ -30,6 +30,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "astw": "~1.2.0",
     "chai": "~1.9.2",
     "esprima-fb": "~7001.1.0-dev-harmony-fb",
     "grunt": "~0.4.1",

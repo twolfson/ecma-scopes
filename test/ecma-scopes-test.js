@@ -37,6 +37,13 @@ describe('ecma-scopes\' lexical scopes:', function () {
       expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
     });
 
-    // TODO: Walk the AST and find our `main` identifier/id
+    it('contains `lexical` inside of a "Function"', function () {
+
+    });
+
+    // TODO: For `block` scoping, we need a clarifier for lexical and other block scopes
+    it.skip('does not contain `lexical` inside of other lexical scopes', function () {
+
+    });
   });
 });
