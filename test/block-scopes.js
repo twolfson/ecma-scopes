@@ -73,14 +73,14 @@ describe.only('ecma-scopes\' block scopes:', function () {
 
   // DEV: Prove that including braces means a `BlockStatement` for where scoping is contained
   describe('an "IfStatement" with braces uses "BlockStatement" as its block scope container', function () {
-    var filepath = __dirname + '/test-files/block-BlockStatement-for-loop.js';
+    var filepath = __dirname + '/test-files/BlockStatement-proof/IfStatement-braces.js';
     testBlockScope(filepath, 'BlockStatement');
   });
 
   // DEV: If we don't have braces, then there is no `BlockStatement`
   // DEV: but `let` needs to live in a `BlockStatement` which is why we have errors
   describe('an "IfStatement" without braces', function () {
-    var filepath = __dirname + '/test-files/block-IfStatement-braceless-lexical-only.js';
+    var filepath = __dirname + '/test-files/BlockStatement-proof/IfStatement-braceless-lexical-only.js';
     scriptUtils.load(filepath, 'IfStatement');
 
     it('does not define a "BlockStatement" due to lack of braces', function () {
