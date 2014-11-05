@@ -42,6 +42,8 @@ exports.runVm = function (type) {
     }
 
     // If we were an unrunnable scope, verify there was an error
+    // DEV: If we start getting a runnable script, this means `node` has started
+    //   supporting this syntax and we should be asserting against it
     if (exports.unrunnableScopes.indexOf(type) !== -1) {
       assert(err, 'Expected `err` to be defined but was `' +  err + '` for "' + type + '"');
       delete this.vm;
