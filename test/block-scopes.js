@@ -56,9 +56,9 @@ function testBlockScope(filepath, type) {
 describe.only('ecma-scopes\' block scopes:', function () {
   // TODO: Remove `testScopes` and `slice`
   var testScopes = ['BlockStatement'];
-  testScopes.slice(-1).forEach(function testBlockCase (type) {
+  // testScopes.slice(-1).forEach(function testBlockCase (type) {
   // ecmaScopes.block.slice(-1).forEach(function testBlockCase (type) {
-  // ecmaScopes.block.forEach(function testBlockCase (type) {
+  ecmaScopes.block.forEach(function testBlockCase (type) {
     describe('a/an "' + type + '"', function () {
       // Resolve our test file e.g. `test-files/block-IfStatement.js`
       var filepath = __dirname + '/test-files/block-' + type + '.js';
