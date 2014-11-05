@@ -71,36 +71,23 @@ describe.only('ecma-scopes\' block scopes:', function () {
   // TODO: Remove `return`
   // return;
 
-  // DEV: Files in `test-files/{bad-syntax,invalid-scope}/` are a set of files which have "bad" syntax
-  // TODO: Should we run them all in a try/catch/fail?
-
-  // DEV: It looks like this isn't a valid test case
-  describe.skip('a "ForStatement" without braces', function () {
-    var filepath = __dirname + '/test-files/block-ForStatement-braceless.js';
-    testBlockScope(filepath, 'ForStatement');
-  });
-
+  // DEV: Prove that including braces means a `BlockStatement` for where scoping is contained
   describe('a "BlockStatement" of a for loop', function () {
     var filepath = __dirname + '/test-files/block-BlockStatement-for-loop.js';
     testBlockScope(filepath, 'BlockStatement');
   });
 
+  // DEV: If we don't have braces, then there is no `BlockStatement`
+  // DEV: but `let` needs to live in a `BlockStatement` which is why we have errors
   describe('an "IfStatement" without braces', function () {
     var filepath = __dirname + '/test-files/block-IfStatement-braceless-lexical-only.js';
     scriptUtils.load(filepath, 'IfStatement');
 
-    it('defines a "BlockStatement" despite a lack of braces', function () {
-      console.log(this.ast);
-    });
-  });
-
-  // DEV: It looks like we cannot combine `let` and `with` due to requirement and restriction of strict mode
-  describe('a "WithStatement"', function () {
-    var filepath = __dirname + '/test-files/block-WithStatement-lexical-only.js';
-    scriptUtils.load(filepath, 'WithStatement');
-
-    it('does not affect lexical scoping', function () {
-      expect(this.vm).to.have.ownProperty('lexical');
+    it('does not define a "BlockStatement" due to lack of braces', function () {
+      var node = astUtils.findFirst(this.ast, {
+        type: 'BlockStatement'
+      });
+      expect(node).to.equal(null);
     });
   });
 });
