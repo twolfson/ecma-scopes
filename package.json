@@ -26,6 +26,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
+    "generate": "node tools/stringify.js",
     "test": "mocha --harmony"
   },
   "dependencies": {
