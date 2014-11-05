@@ -23,26 +23,10 @@ ecmaScopes.block;
 // ["BlockStatement", "ForStatement", "ForInStatement", "ForOfStatement", "ComprehensionBlock"]
 ```
 
-If you are curious about what a token is or why a token is not in the array, please consult [`lib/`][] and [`test/`][].
+Explanations of [lexical][] and [block][] scopes/tokens are available in the [Documentation section](#documentation).
 
-- [`lib/ecma-scopes.comments.js`][] - Commented form of scopes we export with links to references
-- [`test/block-scopes.js`][] - Tests against block scope tokens
-    - Has additional tests to verify that [`BlockStatement`][Statements] covers [`IfStatement`][Statements], [`SwitchStatement`][Statements], and anything that can be braceless
-- [`test/lexical-scopes.js`][] - Tests against lexical scope tokens (e.g. [`FunctionDeclaration`][Functions])
-- [`test/test-files/block-*.js`][] - Example usage of a block token (e.g. [`block-BlockStatement.js`][] for [`BlockStatement`][Statements])
-- [`test/test-files/lexical-*.js`][] - Example usage of a lexical token (e.g. [`lexical-ForStatement.js`][] for [`ForStatement`][Statements])
-
-[`lib/`]: lib/
-[`test/`]: test/
-[`lib/ecma-scopes.comments.js`]: lib/ecma-scopes.comments.js
-[`test/block-scopes.js`]: test/block-scopes.js
-[`test/lexical-scopes.js`]: test/lexical-scopes.js
-[`test/test-files/block-*.js`]: test/test-files/
-[`block-BlockStatement.js`]: test/test-files/block-BlockStatement.js
-[`test/test-files/lexical-*.js`]: test/test-files/
-[`lexical-ForStatement.js`]: test/test-files/lexical-ForStatement.js
-[Functions]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Functions
-[Statements]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Statements
+[lexical]: #exportslexical
+[block]: #exportsblock
 
 ## Documentation
 This library is very lightweight. The annoying part is going through the spec, picking out what works, and testing rigorously. We have done all of that for you.
@@ -120,6 +104,28 @@ With our research, we found the following tokens to manage block scope:
 - `ComprehensionBlock`, array comprehension (generate an array from another array)
     - Example: `var arr1 = [1], arr2 = [val + 1 for (val of arr1)];`
         - `val` is accessible within the comprehension (between the brackets `[ ... ]`) but not outside of it
+
+### Filesystem
+If you would like to discover more by reading the source code, here are their corresponding purposes/information:
+
+- [`lib/ecma-scopes.comments.js`][] - Commented form of scopes we export with links to references
+- [`test/block-scopes.js`][] - Tests against block scope tokens
+    - Has additional tests to verify that [`BlockStatement`][Statements] covers [`IfStatement`][Statements], [`SwitchStatement`][Statements], and anything that can be braceless
+- [`test/lexical-scopes.js`][] - Tests against lexical scope tokens (e.g. [`FunctionDeclaration`][Functions])
+- [`test/test-files/block-*.js`][] - Example usage of a block token (e.g. [`block-BlockStatement.js`][] for [`BlockStatement`][Statements])
+- [`test/test-files/lexical-*.js`][] - Example usage of a lexical token (e.g. [`lexical-ForStatement.js`][] for [`ForStatement`][Statements])
+
+[`lib/`]: lib/
+[`test/`]: test/
+[`lib/ecma-scopes.comments.js`]: lib/ecma-scopes.comments.js
+[`test/block-scopes.js`]: test/block-scopes.js
+[`test/lexical-scopes.js`]: test/lexical-scopes.js
+[`test/test-files/block-*.js`]: test/test-files/
+[`block-BlockStatement.js`]: test/test-files/block-BlockStatement.js
+[`test/test-files/lexical-*.js`]: test/test-files/
+[`lexical-ForStatement.js`]: test/test-files/lexical-ForStatement.js
+[Functions]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Functions
+[Statements]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Statements
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
