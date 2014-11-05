@@ -59,7 +59,7 @@ describe.only('ecma-scopes\' block scopes:', function () {
   // testScopes.slice(-1).forEach(function testBlockCase (type) {
   // ecmaScopes.block.slice(-1).forEach(function testBlockCase (type) {
   ecmaScopes.block.forEach(function testBlockCase (type) {
-    describe.skip('a/an "' + type + '"', function () {
+    describe('a/an "' + type + '"', function () {
       // Resolve our test file e.g. `test-files/block-IfStatement.js`
       var filepath = __dirname + '/test-files/block-' + type + '.js';
 
@@ -68,6 +68,10 @@ describe.only('ecma-scopes\' block scopes:', function () {
     });
   });
 
+  // TODO: Remove `return`
+  return;
+
+  // DEV: It looks like this isn't a valid test case
   describe.skip('a "ForStatement" without braces', function () {
     var filepath = __dirname + '/test-files/block-ForStatement-braceless.js';
     testBlockScope(filepath, 'ForStatement');
