@@ -2,13 +2,13 @@
   "lexical": [
     "FunctionDeclaration",
     "FunctionExpression",
-    "ArrowFunctionExpression"
+    "ArrowFunctionExpression",
+    "ComprehensionBlock"
   ],
   "block": [
     "BlockStatement",
     "ForStatement",
     "ForInStatement",
-    "ForOfStatement",
-    "ComprehensionBlock"
+    "ForOfStatement"
   ]
 }
