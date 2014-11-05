@@ -1,6 +1,6 @@
 'use strict';
 
-var obj = {key: 'value'};
+var obj = {hello: 'world'};
 for (let block in obj) {
   // Code goes here
 }
