@@ -34,7 +34,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
   // TODO: Load from JSON, convert to dash-case, and load file
   // TODO: Then iterate in a `forEach` loop
   ecmaScopes.lexical.forEach(function testLexicalCase (type, typeIndex) {
-    describe('a "' + type + '"', function () {
+    describe('a/an "' + type + '"', function () {
       // Resolve and load our scope file
       // e.g. `test-files/lexical-FunctionDeclaration.js`
       var filepath = __dirname + '/test-files/lexical-' + type + '.js';
