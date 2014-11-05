@@ -1,1 +1,1 @@
-let foo = (bar) => { this.age++; };
+[1].map(x=>x*x)
