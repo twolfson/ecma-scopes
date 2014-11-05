@@ -17,7 +17,7 @@ var testUtils = {
     before(function loadScriptFn () {
       // Load our script and parse its AST
       this.script = fs.readFileSync(filepath, 'utf8');
-      this.ast = esprima.parse(this.script);
+      this.ast = astw(esprima.parse(this.script));
       this.walker = astw(this.ast);
     });
     if (unrunnableScopes.indexOf(type) === -1) {
@@ -86,6 +86,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
 
       it('contains `lexical` inside of a "' + type + '"', function () {
         var container = this.parents[this.parents.length - 1];
+        expect(this.parents).to.not.have.length(0);
         expect(container.type).to.equal(type);
       });
 
