@@ -1,8 +1,6 @@
 'use strict';
-if (true) {
+if (true)
   let block = 'hello';
-}
 
-if (true) {
+if (true)
   var lexical = 'world';
-}
