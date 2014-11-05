@@ -53,7 +53,7 @@ function testBlockScope(filepath, type) {
   });
 }
 
-describe.only('ecma-scopes\' block scopes:', function () {
+describe('ecma-scopes\' block scopes:', function () {
   // TODO: Remove `testScopes` and `slice`
   var testScopes = ['BlockStatement'];
   // testScopes.slice(-1).forEach(function testBlockCase (type) {
