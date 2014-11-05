@@ -24,13 +24,15 @@ function testBlockScope(filepath, type) {
     });
   });
 
-  it('is a block scope', function () {
-    expect(this.vm).to.not.have.ownProperty('block');
-  });
+  if (scriptUtils.unrunnableScopes.indexOf(type) === -1) {
+    it('is a block scope', function () {
+      expect(this.vm).to.not.have.ownProperty('block');
+    });
 
-  it('is not a lexical scope', function () {
-    expect(this.vm).to.have.ownProperty('lexical');
-  });
+    it('is not a lexical scope', function () {
+      expect(this.vm).to.have.ownProperty('lexical');
+    });
+  }
 
   it('contains `block` inside of a "' + type + '"', function () {
     var container = this.parents[this.parents.length - 1];
