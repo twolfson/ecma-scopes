@@ -12,8 +12,6 @@ This was created to make detecting scope boundaries easier and well tested. It i
 [`esformatter-phonetic`]: https://travis-ci.org/twolfson/esformatter-phonetic
 [`esformatter`]: https://github.com/millermedeiros/esformatter
 
-// TODO: Leave a note about how we left `Program` out of lexical scoping becuase it might fit into some but all uses and opting in is easier than opting out.
-
 ## Getting Started
 Install the module with: `npm install ecma-scopes`
 
@@ -49,10 +47,16 @@ If you are curious about what a token is or why a token is not in the array, ple
 ## Documentation
 This library is very lightweight. The annoying part is going through the spec, picking out what works, and testing rigorously. We have done all of that for you.
 
-We provide `exports.lexical` and `exports.block`,
+We provide `exports.lexical` and `exports.block`, lexical and block scopes respectively.
 
-###
+We do not include [`Program`][] in either because depending on your usage, you may want or not want it. Since it is easier to add onto an array, we have chosen to leave it out.
 
+```js
+var lexicalWithProgram = ecmaScopes.lexical.slice();
+lexicalWithProgram.push('Program');
+```
+
+[`Program`]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Programs
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
