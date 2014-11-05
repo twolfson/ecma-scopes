@@ -17,7 +17,7 @@ var testUtils = {
     before(function loadScriptFn () {
       // Load our script and parse its AST
       this.script = fs.readFileSync(filepath, 'utf8');
-      this.ast = astw(esprima.parse(this.script));
+      this.ast = esprima.parse(this.script);
       this.walker = astw(this.ast);
     });
     if (unrunnableScopes.indexOf(type) === -1) {
