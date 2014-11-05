@@ -29,10 +29,23 @@ If you are curious about what a token is or why a token is not in the array, ple
 
 - [`lib/ecma-scopes.comments.js`][] - Commented form of scopes we export with links to references
 - [`test/block-scopes.js`][] - Tests against block scope tokens
-    - Has additional tests to verify that [`BlockStatement`][] covers [`IfStatement`][], [`SwitchStatement`][], and anything that can be braceless
-- [`test/lexical-scopes.js`][] - Tests against lexical scope tokens (e.g. [`FunctionDeclaration`][])
-- [`test/test-files/block-*.js`][] - Example usage of a block token (e.g. [`block-BlockStatement.js`][] for [`BlockStatement`][])
-- [`test/test-files/lexical-*.js`][] - Example usage of a lexical token (e.g. [`lexical-ForStatement.js`][] for [`ForStatement`][])
+    - Has additional tests to verify that [`BlockStatement`][Statements] covers [`IfStatement`][Statements], [`SwitchStatement`][Statements], and anything that can be braceless
+- [`test/lexical-scopes.js`][] - Tests against lexical scope tokens (e.g. [`FunctionDeclaration`][Functions])
+- [`test/test-files/block-*.js`][] - Example usage of a block token (e.g. [`block-BlockStatement.js`][] for [`BlockStatement`][Statements])
+- [`test/test-files/lexical-*.js`][] - Example usage of a lexical token (e.g. [`lexical-ForStatement.js`][] for [`ForStatement`][Statements])
+
+[`lib/`][]
+[`tests/`][]
+
+[`lib/ecma-scopes.comments.js`]: lib/ecma-scopes.comments.js
+[`test/block-scopes.js`]: test/block-scopes.js
+[`test/lexical-scopes.js`]: test/lexical-scopes.js
+[`test/test-files/block-*.js`]: test/test-files/
+[`test/test-files/block-BlockStatement.js`]: test/test-files/block-BlockStatement.js
+[`test/test-files/lexical-*.js`]: test/test-files/
+[`test/test-files/lexical-ForStatement.js`]: test/test-files/lexical-ForStatement.js
+[Functions]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Functions
+[Statements]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Statements
 
 ## Documentation
 This library is very lightweight. The annoying part is going through the spec, picking out what works, and testing rigorously. We have done all of that for you.
