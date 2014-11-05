@@ -69,7 +69,7 @@ describe.only('ecma-scopes\' block scopes:', function () {
   });
 
   // TODO: Remove `return`
-  return;
+  // return;
 
   // DEV: Files in `test-files/{bad-syntax,invalid-scope}/` are a set of files which have "bad" syntax
   // TODO: Should we run them all in a try/catch/fail?
@@ -83,5 +83,16 @@ describe.only('ecma-scopes\' block scopes:', function () {
   describe('a "BlockStatement" of a for loop', function () {
     var filepath = __dirname + '/test-files/block-BlockStatement-for-loop.js';
     testBlockScope(filepath, 'BlockStatement');
+  });
+
+  // DEV: It looks like we cannot combine `let` and `with` due to requirement and restriction of strict mode
+  describe('a "WithStatement"', function () {
+    // Load our scope file
+    var filepath = __dirname + '/test-files/block-WithStatement-lexical-only.js';
+    scriptUtils.load(filepath, 'WithStatement');
+
+    it('does not affect lexical scoping', function () {
+      expect(this.vm).to.have.ownProperty('lexical');
+    });
   });
 });
