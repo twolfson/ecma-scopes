@@ -1,18 +1,13 @@
 // Load in our dependencies
-var assert = require('assert');
 var fs = require('fs');
 
-// Process arguments
-var src = process.argv[2];
-var dest = process.argv[3];
-var usage = 'node stringify.js <src> <dest>\n';
-asset(src, '`src` was not provided to `stringify.js`\n' + usage);
-asset(dest, '`src` was not provided to `stringify.js`\n' + usage);
+// Resolve our filepaths
+var dest = require.resolve('../');
+var src = dest.replace('.json', '.comments.js');
 
-// Load our first file
-// DEV: All filepaths are relative
-var inputObj = require(process.cwd() + '/' + src);
+// Load our source file
+var inputObj = require(src);
 
-// Write to our second file
-var output = JSON.stringify(inputObj, null, 4);
-fs.writeFileSync(process.cwd() + '/' + dest, output, 'utf8');
+// Write to destination file
+var output = JSON.stringify(inputObj, null, 2);
+fs.writeFileSync(dest, output, 'utf8');
