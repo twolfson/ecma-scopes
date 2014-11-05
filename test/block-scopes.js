@@ -85,9 +85,17 @@ describe.only('ecma-scopes\' block scopes:', function () {
     testBlockScope(filepath, 'BlockStatement');
   });
 
+  describe('an "IfStatement" without braces', function () {
+    var filepath = __dirname + '/test-files/block-IfStatement-braceless-lexical-only.js';
+    scriptUtils.load(filepath, 'IfStatement');
+
+    it('defines a "BlockStatement" despite a lack of braces', function () {
+      console.log(this.ast);
+    });
+  });
+
   // DEV: It looks like we cannot combine `let` and `with` due to requirement and restriction of strict mode
   describe('a "WithStatement"', function () {
-    // Load our scope file
     var filepath = __dirname + '/test-files/block-WithStatement-lexical-only.js';
     scriptUtils.load(filepath, 'WithStatement');
 

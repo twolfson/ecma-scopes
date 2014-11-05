@@ -25,7 +25,7 @@ exports.loadScript = function (filepath) {
   });
 };
 
-exports.runVm = function (type) {
+exports.runVm = function () {
   before(function openVmFn () {
     // Load our file into the VM
     this.vm = {};
@@ -40,6 +40,6 @@ exports.runVm = function (type) {
 exports.load = function (filepath, type) {
   exports.loadScript(filepath);
   if (exports.unrunnableScopes.indexOf(type) === -1) {
-    exports.runVm(type);
+    exports.runVm();
   }
 };
