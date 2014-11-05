@@ -5,9 +5,10 @@ var astw = require('astw');
 var esprima = require('esprima-fb');
 
 // Define unrunnable scopes (e.g. arrow functions)
+// http://kangax.github.io/compat-table/es6/
 exports.unrunnableScopes = [
   'ArrowFunctionExpression',
-  // 'ForOfStatement'
+  'ForOfStatement'
 ];
 
 // Define script utilities
