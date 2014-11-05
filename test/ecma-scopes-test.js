@@ -10,7 +10,7 @@ var testUtils = {
     before(function loadScriptFn () {
       // Load our script and parse its AST
       this.script = fs.readFileSync(filepath, 'utf8');
-      this.ast = esprima.parse(this.script);
+      this.walker = astw(this.script);
     });
     before(function openVmFn () {
       // Load our file into the VM
@@ -20,7 +20,7 @@ var testUtils = {
     after(function cleanup () {
       // Clean up the script and vm
       delete this.script;
-      delete this.ast;
+      delete this.walker;
       delete this.vm;
     });
   }
@@ -32,13 +32,39 @@ describe('ecma-scopes\' lexical scopes:', function () {
   // TODO: Then iterate in a `forEach` loop
   describe('a "' + 'Function' + '"', function () {
     testUtils.loadScript(__dirname + '/test-files/lexical-function.js');
+    before(function collectParents () {
+      var parents = this.parents = [];
+      this.walker(function evaluateNode (node) {
+        // If we have already hit our node, stop
+        if (parents.length !== 0) {
+          return;
+        }
+
+        // If the node is an Identifier and `lexical`
+        if (node.type === 'Identifier' && node.name === 'lexical') {
+          // Walk its parents until we resolve a function
+          node = node.parent;
+          while (node) {
+            // Save the parent node
+            parents.push(node);
+
+            // If the node is a `Function`, stop
+            if (node.type === 'FunctionDeclaration') {
+              return;
+            }
+
+            // Resolve the next parent node
+            node = node.parent;
+          }
+        }
+      });
+    });
 
     it('is a lexical scope', function () {
       expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
     });
 
     it('contains `lexical` inside of a "Function"', function () {
-
     });
 
     // TODO: For `block` scoping, we need a clarifier for lexical and other block scopes
