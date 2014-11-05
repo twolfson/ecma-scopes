@@ -25,7 +25,7 @@ ecmaScopes.block;
 // ["BlockStatement", "ForStatement", "ForInStatement", "ForOfStatement", "ComprehensionBlock"]
 ```
 
-If you are curious about what a token is or why a token is not in the array, please consult [`lib/`][] and [`tests/`][].
+If you are curious about what a token is or why a token is not in the array, please consult [`lib/`][] and [`test/`][].
 
 - [`lib/ecma-scopes.comments.js`][] - Commented form of scopes we export with links to references
 - [`test/block-scopes.js`][] - Tests against block scope tokens
@@ -34,9 +34,8 @@ If you are curious about what a token is or why a token is not in the array, ple
 - [`test/test-files/block-*.js`][] - Example usage of a block token (e.g. [`block-BlockStatement.js`][] for [`BlockStatement`][Statements])
 - [`test/test-files/lexical-*.js`][] - Example usage of a lexical token (e.g. [`lexical-ForStatement.js`][] for [`ForStatement`][Statements])
 
-[`lib/`][]
-[`tests/`][]
-
+[`lib/`]: lib/
+[`test/`]: test/
 [`lib/ecma-scopes.comments.js`]: lib/ecma-scopes.comments.js
 [`test/block-scopes.js`]: test/block-scopes.js
 [`test/lexical-scopes.js`]: test/lexical-scopes.js
