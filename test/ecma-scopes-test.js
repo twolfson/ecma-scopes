@@ -1,9 +1,9 @@
 // Load in dependencies
 var fs = require('fs');
 var vm = require('vm');
+var astw = require('astw');
 var esprima = require('esprima-fb');
 var expect = require('chai').expect;
-var traverse = require('traverse');
 var ecmaScopes = require('../');
 
 // TODO: Rename this file to lexical tests
@@ -18,6 +18,7 @@ var testUtils = {
       // Load our script and parse its AST
       this.script = fs.readFileSync(filepath, 'utf8');
       this.ast = esprima.parse(this.script);
+      this.walker = astw(this.ast);
     });
     if (unrunnableScopes.indexOf(type) === -1) {
       before(function openVmFn () {
@@ -30,6 +31,7 @@ var testUtils = {
       // Clean up the script and vm
       delete this.script;
       delete this.ast;
+      delete this.walker;
       delete this.vm;
     });
   }
@@ -50,15 +52,13 @@ describe('ecma-scopes\' lexical scopes:', function () {
         // TODO: Is there a cleaner way to do this?
         // Find closest identifier to `root`
         var parents = this.parents = [];
-        traverse(this.ast).forEach(function evaluateNode (node) {
-          console.log(node);
+        this.walker(function evaluateNode (node) {
           // If we have already hit our lexical container, stop
           if (parents.length !== 0) {
             return;
           }
 
           // If the node is an Identifier and `lexical`
-          console.log(node);
           if (node.type === 'Identifier' && node.name === 'lexical') {
             // Walk its parents until we resolve a function
             node = node.parent;
@@ -91,12 +91,9 @@ describe('ecma-scopes\' lexical scopes:', function () {
 
       // TODO: For `block` scoping, we need a clarifier for lexical and other block scopes
       it('does not contain `lexical` inside of other lexical scopes', function () {
-        // TODO: We need our JSON to be done for this to work
         // Collect the other lexical scopes
         var otherLexicalScopes = ecmaScopes.lexical.slice();
         otherLexicalScopes.splice(typeIndex, 1);
-
-        console.log(this.parents);
 
         // Verify each of the nodes is not in there
         this.parents.forEach(function assertNotOtherLexical (parent) {
