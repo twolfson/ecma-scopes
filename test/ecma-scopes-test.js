@@ -90,7 +90,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
       it('contains `lexical` inside of a "' + type + '"', function () {
         expect(this.parents).to.not.have.length(0);
         var container = this.parents[this.parents.length - 1];
-        console.log(this.parents);
+        console.log(require('util').inspect(this.ast, {depth: null}));
         expect(container.type).to.equal(type);
       });
 
