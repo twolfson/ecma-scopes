@@ -1,8 +1,16 @@
 # ecma-scopes [![Build status](https://travis-ci.org/twolfson/ecma-scopes.png?branch=master)](https://travis-ci.org/twolfson/ecma-scopes)
 
-Listing of block and lexical scope names for ECMAScript AST
+Listing of block and lexical scope names for [ECMAScript AST][]
 
-// TODO: Look at all our TODO's
+We are using the tokens output by [`esprima-fb`][], a fork of [`esprima`][] with ES6 support.
+
+This was created to make detecting scope boundaries easier and well tested. It is a part of the [`esformatter-phonetic`][] project, an [`esformatter`][] plugin that helps with renaming obfuscated variabes to more recognizable ones.
+
+[ECMAScript AST]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API
+[`esprima-fb`]: https://github.com/facebook/esprima
+[`esprima`]: http://esprima.org/
+[`esformatter-phonetic`]: https://travis-ci.org/twolfson/esformatter-phonetic
+[`esformatter`]: https://github.com/millermedeiros/esformatter
 
 // TODO: Leave a note about how we left `Program` out of lexical scoping becuase it might fit into some but all uses and opting in is easier than opting out.
 
@@ -10,8 +18,8 @@ Listing of block and lexical scope names for ECMAScript AST
 Install the module with: `npm install ecma-scopes`
 
 ```js
-var ecma_scopes = require('ecma-scopes');
-ecma_scopes.awesome(); // "awesome"
+var ecmaScopes = require('ecma-scopes');
+
 ```
 
 ## Documentation
