@@ -36,7 +36,6 @@ function testLexicalScope(filepath, type) {
     expect(container.type).to.equal(type);
   });
 
-  // TODO: For `block` scoping, we need a clarifier for lexical and other block scopes
   it('does not contain `lexical` inside of other lexical scopes', function () {
     // Collect the other lexical scopes
     var otherLexicalScopes = ecmaScopes.lexical.slice();
@@ -49,7 +48,6 @@ function testLexicalScope(filepath, type) {
     });
   });
 }
-
 
 // Define our tests
 describe('ecma-scopes\' lexical scopes:', function () {

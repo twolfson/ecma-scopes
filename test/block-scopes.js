@@ -55,6 +55,7 @@ function testBlockScope(filepath, type) {
   });
 }
 
+// Define our tests
 describe('ecma-scopes\' block scopes:', function () {
   ecmaScopes.block.forEach(function testBlockCase (type) {
     describe('a/an "' + type + '"', function () {

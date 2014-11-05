@@ -2,10 +2,6 @@
 
 Listing of block and lexical scope names for ECMAScript AST
 
-// TODO: After development, move .js back to .json
-// TODO: Consider generation function if it is a complex list that requires commenting
-  // TODO: How about a .comments.js and in the test suite we deep compare them?
-
 // TODO: Look at all our TODO's
 
 // TODO: Leave a note about how we left `Program` out of lexical scoping becuase it might fit into some but all uses and opting in is easier than opting out.
