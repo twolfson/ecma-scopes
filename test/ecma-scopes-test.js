@@ -60,6 +60,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
 
               // If the node is a `Function`, stop
               // TODO: Handle `FunctionExpression
+              // TODO: We can stop at the first lexical scope...
               if (node.type === 'FunctionDeclaration') {
                 return;
               }
