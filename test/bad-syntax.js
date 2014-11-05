@@ -11,7 +11,7 @@ var scriptUtils = require('./utils/script');
 var dir = __dirname + '/test-files/';
 var files = glob.sync('bad-syntax/*', {cwd: dir});
 files.forEach(function handleBadSyntaxFile (_filepath) {
-  describe.only('Bad syntax file "' + _filepath + '"', function () {
+  describe('Bad syntax file "' + _filepath + '"', function () {
     // Construct full filepath
     // DEV: We use a `cwd` to make describe names easier to read
     var filepath = dir + _filepath;
