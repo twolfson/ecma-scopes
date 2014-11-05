@@ -59,7 +59,7 @@ describe.only('ecma-scopes\' block scopes:', function () {
   // testScopes.slice(-1).forEach(function testBlockCase (type) {
   // ecmaScopes.block.slice(-1).forEach(function testBlockCase (type) {
   ecmaScopes.block.forEach(function testBlockCase (type) {
-    describe('a/an "' + type + '"', function () {
+    describe.skip('a/an "' + type + '"', function () {
       // Resolve our test file e.g. `test-files/block-IfStatement.js`
       var filepath = __dirname + '/test-files/block-' + type + '.js';
 
@@ -68,8 +68,13 @@ describe.only('ecma-scopes\' block scopes:', function () {
     });
   });
 
-  describe.only('a "ForStatement" without braces', function () {
+  describe.skip('a "ForStatement" without braces', function () {
     var filepath = __dirname + '/test-files/block-ForStatement-braceless.js';
     testBlockScope(filepath, 'ForStatement');
+  });
+
+  describe('a "BlockStatement" of a for loop', function () {
+    var filepath = __dirname + '/test-files/block-BlockStatement-for-loop.js';
+    testBlockScope(filepath, 'BlockStatement');
   });
 });
