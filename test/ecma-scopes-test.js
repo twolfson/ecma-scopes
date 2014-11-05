@@ -1,19 +1,26 @@
 // Load in dependencies
 var fs = require('fs');
 var vm = require('vm');
+var esprima = require('esprima-fb');
 var expect = require('chai').expect;
 
 // Define test utilities
 var testUtils = {
-  openVm: function (filepath) {
+  loadScript: function (filepath) {
+    before(function loadScriptFn () {
+      // Load our script and parse its AST
+      this.script = fs.readFileSync(filepath, 'utf8');
+      this.ast = esprima.parse(this.script);
+    });
     before(function openVmFn () {
       // Load our file into the VM
-      var script = fs.readFileSync(filepath, 'utf8');
       this.vm = {};
-      vm.runInNewContext(script, this.vm);
+      vm.runInNewContext(this.script, this.vm);
     });
     after(function cleanup () {
-      // Clean up the vm
+      // Clean up the script and vm
+      delete this.script;
+      delete this.ast;
       delete this.vm;
     });
   }
@@ -24,10 +31,12 @@ describe('ecma-scopes\' lexical scopes:', function () {
   // TODO: Load from JSON, convert to dash-case, and load file
   // TODO: Then iterate in a `forEach` loop
   describe('a "' + 'Function' + '"', function () {
-    testUtils.openVm(__dirname + '/test-files/lexical-function.js');
+    testUtils.loadScript(__dirname + '/test-files/lexical-function.js');
 
     it('is a lexical scope', function () {
       expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
     });
+
+    // TODO: Walk the AST and find our `main` identifier/id
   });
 });
