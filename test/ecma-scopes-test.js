@@ -17,7 +17,7 @@ var testUtils = {
     before(function loadScriptFn () {
       // Load our script and parse its AST
       this.script = fs.readFileSync(filepath, 'utf8');
-      this.ast = esprima.parse(this.script);
+      this.ast = rocambole.parse(this.script);
     });
     if (unrunnableScopes.indexOf(type) === -1) {
       before(function openVmFn () {
@@ -50,13 +50,14 @@ describe('ecma-scopes\' lexical scopes:', function () {
         // TODO: Is there a cleaner way to do this?
         // Find closest identifier to `root`
         var parents = this.parents = [];
-        rocambole.walk(ast, function evaluateNode (node) {
+        rocambole.recursive(this.ast, function evaluateNode (node) {
           // If we have already hit our lexical container, stop
           if (parents.length !== 0) {
             return;
           }
 
           // If the node is an Identifier and `lexical`
+          console.log(node);
           if (node.type === 'Identifier' && node.name === 'lexical') {
             // Walk its parents until we resolve a function
             node = node.parent;
