@@ -8,7 +8,8 @@ var esprima = require('esprima-fb');
 // http://kangax.github.io/compat-table/es6/
 exports.unrunnableScopes = [
   'ArrowFunctionExpression',
-  'ForOfStatement'
+  'ForOfStatement',
+  'ComprehensionBlock'
 ];
 
 // Define script utilities
