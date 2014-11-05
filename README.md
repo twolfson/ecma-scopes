@@ -40,9 +40,9 @@ If you are curious about what a token is or why a token is not in the array, ple
 [`test/block-scopes.js`]: test/block-scopes.js
 [`test/lexical-scopes.js`]: test/lexical-scopes.js
 [`test/test-files/block-*.js`]: test/test-files/
-[`test/test-files/block-BlockStatement.js`]: test/test-files/block-BlockStatement.js
+[`block-BlockStatement.js`]: test/test-files/block-BlockStatement.js
 [`test/test-files/lexical-*.js`]: test/test-files/
-[`test/test-files/lexical-ForStatement.js`]: test/test-files/lexical-ForStatement.js
+[`lexical-ForStatement.js`]: test/test-files/lexical-ForStatement.js
 [Functions]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Functions
 [Statements]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Statements
 
