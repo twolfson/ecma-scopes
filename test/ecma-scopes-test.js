@@ -58,10 +58,8 @@ describe('ecma-scopes\' lexical scopes:', function () {
               // Save the parent node
               parents.push(node);
 
-              // If the node is a `Function`, stop
-              // TODO: Handle `FunctionExpression
-              // TODO: We can stop at the first lexical scope...
-              if (node.type === 'FunctionDeclaration') {
+              // If the node is our type, stop
+              if (node.type === type) {
                 return;
               }
 
