@@ -1,7 +1,7 @@
 'use strict';
-for (let block = true; false; false) {
+for (let block = 'hello'; false; false) {
   // Code goes here
 }
-for (var lexical = 'hello'; false; false) {
+for (var lexical = 'world'; false; false) {
   // Code goes here
 }
