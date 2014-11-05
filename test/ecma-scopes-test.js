@@ -1,6 +1,7 @@
 // Load in dependencies
 var fs = require('fs');
 var vm = require('vm');
+var expect = require('chai').expect;
 
 // Define test utilities
 var testUtils = {
@@ -26,7 +27,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
     testUtils.openVm(__dirname + '/test-files/lexical-function.js');
 
     it('is a lexical scope', function () {
-      console.log(this.vm);
+      expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
     });
   });
 });
