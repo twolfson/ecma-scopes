@@ -1,8 +1,9 @@
 // Load in dependencies
 var fs = require('fs');
 var vm = require('vm');
-var astw = require('astw');
+var esprima = require('esprima-fb');
 var expect = require('chai').expect;
+var rocambole = require('rocambole');
 var ecmaScopes = require('../');
 
 // TODO: Rename this file to lexical tests
@@ -16,7 +17,7 @@ var testUtils = {
     before(function loadScriptFn () {
       // Load our script and parse its AST
       this.script = fs.readFileSync(filepath, 'utf8');
-      this.walker = astw(this.script);
+      this.ast = esprima.parse(this.script);
     });
     if (unrunnableScopes.indexOf(type) === -1) {
       before(function openVmFn () {
@@ -28,7 +29,7 @@ var testUtils = {
     after(function cleanup () {
       // Clean up the script and vm
       delete this.script;
-      delete this.walker;
+      delete this.ast;
       delete this.vm;
     });
   }
@@ -47,8 +48,9 @@ describe('ecma-scopes\' lexical scopes:', function () {
       // Collect the parents for analysis within the lexical scope
       before(function collectParents () {
         // TODO: Is there a cleaner way to do this?
+        // Find closest identifier to `root`
         var parents = this.parents = [];
-        this.walker(function evaluateNode (node) {
+        rocambole.walk(ast, function evaluateNode (node) {
           // If we have already hit our lexical container, stop
           if (parents.length !== 0) {
             return;
