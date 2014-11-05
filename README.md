@@ -76,6 +76,31 @@ With our research, we found the following tokens to manage lexical scope:
     - Example: `(item) => item;`
         - `item` is defined as an input parameter and remains scoped within the function
 
+### `exports.block`
+Block scoping is a new form of scoping performed with a `let` keyword. Instead of variables being scoped to functions, they are now scoped to block statements (e.g. any time we are between braces `{ ... }`. For example, an `if` statement using `let` does not expose the variable to the rest of the program.
+
+```js
+if (true) {
+  let item;
+}
+// item is not declared nor defined
+```
+
+In its simplest form, the following is valid and block scoped:
+
+```js
+{ var item; }
+```
+
+In addition to braces, loops that allow variable declarations scope `let` to their corresponding `BlockStatement` (section between braces):
+
+```js
+for (let item = 'hello', i = 0; i < 10; i++) {
+  item; // 'hello'
+}
+// item is not declared nor defined
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
 
