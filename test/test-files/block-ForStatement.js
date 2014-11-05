@@ -1,6 +1,7 @@
-// TODO: We should test `let` inside of parents and braces
-for (var i = 0; i < 10; i++) {
-  let block = true;
+'use strict';
+// TODO: We should test `let` inside of parens and braces
+for (let block = true; false; false) {
+  // Code goes here
 }
 for (var lexical = 'hello'; false; false) {
   // Code goes here
