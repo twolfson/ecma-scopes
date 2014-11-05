@@ -8,7 +8,7 @@ var ecmaScopes = require('../');
 // TODO: Rename this file to lexical tests
 
 // Define unrunnable scopes (e.g. arrows)
-var unrunnableScopes = ['ArrowExpression'];
+var unrunnableScopes = ['ArrowFunctionExpression'];
 
 // Define test utilities
 var testUtils = {
@@ -36,8 +36,7 @@ var testUtils = {
 
 // Define our tests
 describe('ecma-scopes\' lexical scopes:', function () {
-  // TODO: Load from JSON, convert to dash-case, and load file
-  // TODO: Then iterate in a `forEach` loop
+  ecmaScopes.lexical = ecmaScopes.lexical.slice(-1);
   ecmaScopes.lexical.forEach(function testLexicalCase (type, typeIndex) {
     describe('a/an "' + type + '"', function () {
       // Resolve and load our scope file
@@ -92,6 +91,8 @@ describe('ecma-scopes\' lexical scopes:', function () {
         // Collect the other lexical scopes
         var otherLexicalScopes = ecmaScopes.lexical.slice();
         otherLexicalScopes.splice(typeIndex, 1);
+
+        console.log(this.parents);
 
         // Verify each of the nodes is not in there
         this.parents.forEach(function assertNotOtherLexical (parent) {
