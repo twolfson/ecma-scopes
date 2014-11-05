@@ -16,7 +16,6 @@ function testBlockScope(filepath, type) {
       type: 'Identifier',
       name: 'block'
     });
-    console.log(require('util').inspect(this.ast, {depth: null}));
     expect(node).to.not.equal(null);
 
     // Resolve the node's parents until we hit our scope type (e.g. `IfStatement`)
