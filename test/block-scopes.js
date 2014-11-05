@@ -35,6 +35,7 @@ function testBlockScope(filepath, type) {
   }
 
   it('contains `block` inside of a "' + type + '"', function () {
+    console.log(require('util').inspect(this.ast, {depth: null}));
     var container = this.parents[this.parents.length - 1];
     expect(this.parents).to.not.have.length(0);
     expect(container.type).to.equal(type);
@@ -57,10 +58,10 @@ function testBlockScope(filepath, type) {
 
 describe.only('ecma-scopes\' block scopes:', function () {
   // TODO: Remove `testScopes` and `slice`
-  var testScopes = ['BlockStatement'];
-  // testScopes.slice(-1).forEach(function testBlockCase (type) {
+  var testScopes = ['ComprehensionBlock'];
+  testScopes.forEach(function testBlockCase (type) {
   // ecmaScopes.block.slice(-1).forEach(function testBlockCase (type) {
-  ecmaScopes.block.forEach(function testBlockCase (type) {
+  // ecmaScopes.block.forEach(function testBlockCase (type) {
     describe('a/an "' + type + '"', function () {
       // Resolve our test file e.g. `test-files/block-IfStatement.js`
       var filepath = __dirname + '/test-files/block-' + type + '.js';
@@ -73,7 +74,7 @@ describe.only('ecma-scopes\' block scopes:', function () {
   // TODO: For our sanity, try/catch/fail bad syntax tests
 
   // TODO: Remove `return`
-  // return;
+  return;
 
   // DEV: Prove that including braces means a `BlockStatement` for where scoping is contained
   describe('an "IfStatement" with braces uses "BlockStatement" as its block scope container', function () {
