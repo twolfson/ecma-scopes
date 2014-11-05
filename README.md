@@ -19,14 +19,28 @@ Install the module with: `npm install ecma-scopes`
 
 ```js
 var ecmaScopes = require('ecma-scopes');
-
+ecmaScopes.lexical;
+// ["FunctionDeclaration", "FunctionExpression", "ArrowFunctionExpression"]
+ecmaScopes.block;
+// ["BlockStatement", "ForStatement", "ForInStatement", "ForOfStatement", "ComprehensionBlock"]
 ```
 
-## Documentation
-_(Coming soon)_
+If you are curious about what a token is or why a token is not in the array, please consult [`lib/`][] and [`tests/`][].
 
-## Examples
-_(Coming soon)_
+- [`lib/ecma-scopes.comments.js`][] - Commented form of scopes we export with links to references
+- [`test/block-scopes.js`][] - Tests against block scope tokens
+    - Has additional tests to verify that [`BlockStatement`][] covers [`IfStatement`][], [`SwitchStatement`][], and anything that can be braceless
+- [`test/lexical-scopes.js`][] - Tests against lexical scope tokens (e.g. [`FunctionDeclaration`][])
+- [`test/test-files/block-*.js`][] - Example usage of a block token (e.g. [`block-BlockStatement.js`][] for [`BlockStatement`][])
+- [`test/test-files/lexical-*.js`][] - Example usage of a lexical token (e.g. [`lexical-ForStatement.js`][] for [`ForStatement`][])
+
+## Documentation
+This library is very lightweight. The annoying part is going through the spec, picking out what works, and testing rigorously. We have done all of that for you.
+
+We provide `exports.lexical` and `exports.block`,
+
+###
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
