@@ -9,7 +9,7 @@ This was created to make detecting scope boundaries easier and well tested. It i
 [ECMAScript AST]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API
 [`esprima-fb`]: https://github.com/facebook/esprima
 [`esprima`]: http://esprima.org/
-[`esformatter-phonetic`]: https://travis-ci.org/twolfson/esformatter-phonetic
+[`esformatter-phonetic`]: https://github.com/twolfson/esformatter-phonetic
 [`esformatter`]: https://github.com/millermedeiros/esformatter
 
 ## Getting Started
