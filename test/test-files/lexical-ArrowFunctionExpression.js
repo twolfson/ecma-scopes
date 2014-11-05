@@ -1,1 +1,1 @@
-[].map(x => lexical)
+[].map(lexical => lexical)

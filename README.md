@@ -58,6 +58,24 @@ lexicalWithProgram.push('Program');
 
 [`Program`]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Programs
 
+### `exports.lexical`
+Lexical scoping is JavaScript's default way for handling variable scope. This comes into effect when `var` is used, function `arguments`, function name's, catch `arguments`, and probably some more (sorry for an incomplete list).
+
+Functions reference: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API#Functions
+
+With our research, we found the following tokens to manage lexical scope:
+
+- `FunctionDeclaration`, function declared as a statement
+    - Example: `function main() { var item; }`
+        - `main` is the function and `hello` is a lexically scoped variable inside of `main`
+- `FunctionExpression`, function set to a variable
+    - Example: `var main = function () { var item; }`
+        - `main` is the function and `hello` is a lexically scoped variable inside of `main`
+- `ArrowFunctionExpression`
+    - **Warning:** Inside of the SpiderMonkey API documenttion, this is `ArrowExpression`. However `esprima-fb` implements it as `ArrowFunctionExpression`
+    - Example: `(item) => item;`
+        - `item` is defined as an input parameter and remains scoped within the function
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
 
