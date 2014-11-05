@@ -5,9 +5,11 @@ var astUtils = require('./utils/ast');
 var scriptUtils = require('./utils/script');
 
 // Define our tests
-describe('ecma-scopes\' block scopes:', function () {
-  // TODO: Remove `slice`
-  ecmaScopes.block.slice(-1).forEach(function testBlockCase (type, typeIndex) {
+describe.only('ecma-scopes\' block scopes:', function () {
+  // TODO: Remove `testScopes` and `slice`
+  var testScopes = ['BlockStatement'];
+  testScopes.slice(-1).forEach(function testBlockCase (type, typeIndex) {
+  // ecmaScopes.block.slice(-1).forEach(function testBlockCase (type, typeIndex) {
   // ecmaScopes.block.forEach(function testBlockCase (type, typeIndex) {
     describe('a/an "' + type + '"', function () {
       // Resolve and load our scope file
