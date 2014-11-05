@@ -72,7 +72,7 @@ describe.only('ecma-scopes\' block scopes:', function () {
   // return;
 
   // DEV: Prove that including braces means a `BlockStatement` for where scoping is contained
-  describe('a "BlockStatement" of a for loop', function () {
+  describe('an "IfStatement" with braces uses "BlockStatement" as its block scope container', function () {
     var filepath = __dirname + '/test-files/block-BlockStatement-for-loop.js';
     testBlockScope(filepath, 'BlockStatement');
   });
