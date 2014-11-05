@@ -21,25 +21,12 @@ describe('ecma-scopes\' lexical scopes:', function () {
           type: 'Identifier',
           name: 'lexical'
         });
+        expect(node).to.not.equal(null);
 
-        // If there was a match
-        var parents = this.parents = [];
-        if (node) {
-          // Walk its parents until we resolve a function
-          var parent = node.parent;
-          while (parent) {
-            // Save the parent node
-            parents.push(parent);
-
-            // If the parent is our scope type, stop
-            if (parent.type === type) {
-              return;
-            }
-
-            // Resolve the next parent
-            parent = parent.parent;
-          }
-        }
+        // Resolve the node's parents until we hit our scope type (e.g. `FunctionDeclaration`)
+        this.parents = astUtils.findParentsUntil(node, {
+          type: type
+        });
       });
 
       if (scriptUtils.unrunnableScopes.indexOf(type) === -1) {

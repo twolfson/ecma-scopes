@@ -23,3 +23,25 @@ exports.findFirst = function (ast, requisites) {
   // Return the result
   return retVal;
 };
+
+exports.findParentsUntil = function (node, requisites) {
+  // Walk its parents until we resolve a function
+  var retArr = [];
+  var comparator = _.matches(requisites);
+  node = node.parent;
+  while (node) {
+    // Save the parent node
+    retArr.push(node);
+
+    // If the node matches our requisites, stop
+    if (comparator(node)) {
+      break;
+    }
+
+    // Resolve the next node
+    node = node.parent;
+  }
+
+  // Return our array of parents
+  return retArr;
+};
