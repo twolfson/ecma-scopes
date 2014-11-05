@@ -1,7 +1,7 @@
 // Load in dependencies
 var fs = require('fs');
 var vm = require('vm');
-var esprima = require('esprima-fb');
+var astw = require('astw');
 var expect = require('chai').expect;
 
 // Define test utilities
