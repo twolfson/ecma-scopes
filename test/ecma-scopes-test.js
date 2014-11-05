@@ -72,7 +72,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
       });
 
       it('is a lexical scope', function () {
-        expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
+        expect(this.vm).to.not.have.ownProperty('lexical');
       });
 
       it('contains `lexical` inside of a "' + type + '"', function () {
