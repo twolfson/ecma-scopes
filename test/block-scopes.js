@@ -53,7 +53,7 @@ function testBlockScope(filepath, type) {
   });
 }
 
-describe('ecma-scopes\' block scopes:', function () {
+describe.only('ecma-scopes\' block scopes:', function () {
   // TODO: Remove `testScopes` and `slice`
   var testScopes = ['BlockStatement'];
   // testScopes.slice(-1).forEach(function testBlockCase (type) {
@@ -66,5 +66,10 @@ describe('ecma-scopes\' block scopes:', function () {
       // Run the test
       testBlockScope(filepath, type);
     });
+  });
+
+  describe.only('a "ForStatement" without braces', function () {
+    var filepath = __dirname + '/test-files/block-ForStatement-braceless.js';
+    testBlockScope(filepath, 'ForStatement');
   });
 });
