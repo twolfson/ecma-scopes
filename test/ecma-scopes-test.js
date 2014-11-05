@@ -9,7 +9,10 @@ var ecmaScopes = require('../');
 // TODO: Rename this file to lexical tests
 
 // Define unrunnable scopes (e.g. arrows)
-var unrunnableScopes = ['ArrowFunctionExpression'];
+var unrunnableScopes = [
+  'ArrowFunctionExpression',
+  'SequenceExpression'
+];
 
 // Define test utilities
 var testUtils = {
@@ -85,8 +88,9 @@ describe('ecma-scopes\' lexical scopes:', function () {
       }
 
       it('contains `lexical` inside of a "' + type + '"', function () {
-        var container = this.parents[this.parents.length - 1];
         expect(this.parents).to.not.have.length(0);
+        var container = this.parents[this.parents.length - 1];
+        console.log(this.parents);
         expect(container.type).to.equal(type);
       });
 
