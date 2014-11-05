@@ -68,6 +68,8 @@ describe.only('ecma-scopes\' block scopes:', function () {
     });
   });
 
+  // TODO: For our sanity, try/catch/fail bad syntax tests
+
   // TODO: Remove `return`
   // return;
 
