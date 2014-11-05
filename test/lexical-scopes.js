@@ -1,43 +1,7 @@
 // Load in dependencies
-var fs = require('fs');
-var vm = require('vm');
-var astw = require('astw');
-var esprima = require('esprima-fb');
 var expect = require('chai').expect;
 var ecmaScopes = require('../');
-
-// TODO: Rename this file to lexical tests
-
-// Define unrunnable scopes (e.g. arrows)
-var unrunnableScopes = [
-  'ArrowFunctionExpression'
-];
-
-// Define test utilities
-var testUtils = {
-  loadScript: function (filepath, type) {
-    before(function loadScriptFn () {
-      // Load our script and parse its AST
-      this.script = fs.readFileSync(filepath, 'utf8');
-      this.ast = esprima.parse(this.script);
-      this.walker = astw(this.ast);
-    });
-    if (unrunnableScopes.indexOf(type) === -1) {
-      before(function openVmFn () {
-        // Load our file into the VM
-        this.vm = {};
-        vm.runInNewContext(this.script, this.vm);
-      });
-    }
-    after(function cleanup () {
-      // Clean up the script and vm
-      delete this.script;
-      delete this.ast;
-      delete this.walker;
-      delete this.vm;
-    });
-  }
-};
+var scriptUtils = require('./utils/script');
 
 // Define our tests
 describe('ecma-scopes\' lexical scopes:', function () {
@@ -47,7 +11,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
       // Resolve and load our scope file
       // e.g. `test-files/lexical-FunctionDeclaration.js`
       var filepath = __dirname + '/test-files/lexical-' + type + '.js';
-      testUtils.loadScript(filepath, type);
+      scriptUtils.load(filepath, type);
 
       // Collect the parents for analysis within the lexical scope
       before(function collectParents () {
@@ -80,7 +44,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
         });
       });
 
-      if (unrunnableScopes.indexOf(type) === -1) {
+      if (scriptUtils.unrunnableScopes.indexOf(type) === -1) {
         it('is a lexical scope', function () {
           expect(this.vm).to.not.have.ownProperty('lexical');
         });
