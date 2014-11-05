@@ -71,7 +71,7 @@ describe.only('ecma-scopes\' block scopes:', function () {
   // TODO: Remove `return`
   return;
 
-  // DEV: Files in `test-files/invalid/` are a set of files which have "bad" syntax
+  // DEV: Files in `test-files/{bad-syntax,invalid-scope}/` are a set of files which have "bad" syntax
   // TODO: Should we run them all in a try/catch/fail?
 
   // DEV: It looks like this isn't a valid test case
