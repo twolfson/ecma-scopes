@@ -1,6 +1,9 @@
-function main() {
+function hello() {
   var lexical = 'hello';
-}
-if (typeof lexical !== 'undefined') {
-  throw new Error('"Function" is not lexical');
+  let block = 'world';
+
+  return {
+    lexical: lexical,
+    block: block
+  };
 }
