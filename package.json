@@ -26,10 +26,9 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --harmony"
   },
   "dependencies": {
-    "astw": "~1.2.0"
   },
   "devDependencies": {
     "astw": "~1.2.0",
