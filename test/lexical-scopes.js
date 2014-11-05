@@ -6,7 +6,6 @@ var scriptUtils = require('./utils/script');
 
 // Define our tests
 describe('ecma-scopes\' lexical scopes:', function () {
-  ecmaScopes.lexical = ecmaScopes.lexical.slice(-1);
   ecmaScopes.lexical.forEach(function testLexicalCase (type, typeIndex) {
     describe('a/an "' + type + '"', function () {
       // Resolve and load our scope file
