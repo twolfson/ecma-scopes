@@ -1,7 +1,6 @@
 // Load in dependencies
 var fs = require('fs');
 var vm = require('vm');
-var _ = require('underscore');
 var astw = require('astw');
 var expect = require('chai').expect;
 var ecmaScopes = require('../');
@@ -43,6 +42,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
 
       // Collect the parents for analysis within the lexical scope
       before(function collectParents () {
+        // TODO: Is there a cleaner way to do this?
         var parents = this.parents = [];
         this.walker(function evaluateNode (node) {
           // If we have already hit our lexical container, stop
@@ -75,7 +75,7 @@ describe('ecma-scopes\' lexical scopes:', function () {
         expect(this.vm.hasOwnProperty('lexical')).to.equal(false);
       });
 
-      it('contains `lexical` inside of a "Function"', function () {
+      it('contains `lexical` inside of a "' + type + '"', function () {
         var container = this.parents[this.parents.length - 1];
         expect(container.type).to.equal(type);
       });
@@ -88,8 +88,9 @@ describe('ecma-scopes\' lexical scopes:', function () {
         otherLexicalScopes.splice(typeIndex, 1);
 
         // Verify each of the nodes is not in there
-        var parentTypes = _.pluck(this.parents, 'type');
-        console.log(parentTypes);
+        this.parents.forEach(function assertNotOtherLexical (parent) {
+          expect(parent.type).not['in'](otherLexicalScopes);
+        });
       });
     });
   });
