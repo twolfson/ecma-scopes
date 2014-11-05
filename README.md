@@ -2,6 +2,9 @@
 
 Listing of block and lexical scope names for ECMAScript AST
 
+// TODO: After development, move .js back to .json
+// TODO: Consider generation function if it is a complex list that requires commenting
+
 ## Getting Started
 Install the module with: `npm install ecma-scopes`
 
