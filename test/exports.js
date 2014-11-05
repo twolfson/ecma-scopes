@@ -9,4 +9,9 @@ describe('Our commented set of scopes and our stringified set of scopes', functi
     // DEV: If this test fails, run `npm run stringify` to generate the latest set
     expect(ecmaScopes).to.deep.equal(ecmaScopesCommented);
   });
+
+  it('does not export undefined values', function () {
+    expect(ecmaScopes.lexical).to.not.contain(undefined);
+    expect(ecmaScopes.block).to.not.contain(undefined);
+  });
 });
