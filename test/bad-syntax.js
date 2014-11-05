@@ -24,7 +24,9 @@ files.forEach(function handleBadSyntaxFile (_filepath) {
       var script = fs.readFileSync(filepath, 'utf8');
       var err;
       try {
-        esprima.parse(script);
+      console.log(require('util').inspect(
+        esprima.parse(script)
+      , {depth: null}));
       // Upon error, save it
       } catch (_err) {
         err = _err;
