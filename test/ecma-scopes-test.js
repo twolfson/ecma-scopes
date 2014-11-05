@@ -10,8 +10,7 @@ var ecmaScopes = require('../');
 
 // Define unrunnable scopes (e.g. arrows)
 var unrunnableScopes = [
-  'ArrowFunctionExpression',
-  'SequenceExpression'
+  'ArrowFunctionExpression'
 ];
 
 // Define test utilities
