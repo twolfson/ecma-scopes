@@ -2,4 +2,4 @@ After `if` and `for`, we are quite confident that `BlockStatement` is required f
 
 - SwitchStatement
 - TryStatement
-- CatchClause
+- CatchClause (outside of definition)

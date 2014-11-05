@@ -9,6 +9,7 @@
     "ForStatement",
     "ForInStatement",
     "ForOfStatement",
+    "CatchClause",
     "ComprehensionBlock"
   ]
 }
