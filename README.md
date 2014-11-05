@@ -8,6 +8,8 @@ Listing of block and lexical scope names for ECMAScript AST
 
 // TODO: Look at all our TODO's
 
+// TODO: Leave a note about how we left `Program` out of lexical scoping becuase it might fit into some but all uses and opting in is easier than opting out.
+
 ## Getting Started
 Install the module with: `npm install ecma-scopes`
 
