@@ -10,7 +10,7 @@ var esprima = require('esprima-fb');
 exports.unrunnableScopes = [
   'ArrowFunctionExpression',
   'ForOfStatement',
-  'ComprehensionBlock'
+  'ComprehensionExpression'
 ];
 
 // Define script utilities
