@@ -20,7 +20,7 @@ var ecmaScopes = require('ecma-scopes');
 ecmaScopes.lexical;
 // ["FunctionDeclaration", "FunctionExpression", "ArrowFunctionExpression"]
 ecmaScopes.block;
-// ["BlockStatement", "ForStatement", "ForInStatement", "ForOfStatement", "CatchClause", "ComprehensionBlock"]
+// ["BlockStatement", "ForStatement", "ForInStatement", "ForOfStatement", "CatchClause", "ComprehensionExpression"]
 ```
 
 Explanations of [lexical][] and [block][] scopes/tokens are available in the [Documentation section](#documentation).
@@ -104,7 +104,7 @@ With our research, we found the following tokens to manage block scope:
 - `CatchClause`, `catch` handler of a `try/catch/finally`
     - Example: `try { /* ... */ } catch (err) { /* ... */ }`
         - `err` is accessible within the `catch's BlockStatement` but not outside of it
-- `ComprehensionBlock`, array comprehension (generate an array from another array)
+- `ComprehensionExpression`, array comprehension (generate an array from another array)
     - Example: `var arr1 = [1], arr2 = [val + 1 for (val of arr1)];`
         - `val` is accessible within the comprehension (between the brackets `[ ... ]`) but not outside of it
 
