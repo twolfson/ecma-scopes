@@ -10,6 +10,7 @@
     "ForInStatement",
     "ForOfStatement",
     "CatchClause",
-    "ComprehensionExpression"
+    "ComprehensionExpression",
+    null
   ]
 }
